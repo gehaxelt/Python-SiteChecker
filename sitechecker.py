@@ -47,8 +47,8 @@ class CheckerRequest(object):
             
 
             self.__stoptime = self.__getCurrentMillis()
-            return True
             self.__down=False
+            return True
         except:
             self.__down=True
             return False
