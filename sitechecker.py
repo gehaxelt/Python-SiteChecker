@@ -2,6 +2,7 @@
 
 import urllib, urllib2, time
 import sys
+import os.path
 
 class CheckerRequest(object):
     
@@ -68,6 +69,9 @@ class CheckerRequest(object):
 
 
 if __name__ == "__main__":
+    if not os.path.isfile("sites.txt"):
+        print "./sites.txt not found"
+        exit(1) 
     chckr = CheckerRequest()
     while True:
         for url in open("sites.txt","r").readlines():
