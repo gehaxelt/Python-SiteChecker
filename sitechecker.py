@@ -10,7 +10,7 @@ class CheckerRequest(object):
         self.__starttime=0
         self.__stoptime=0
         self.__url=""
-        self.__responseszie=0
+        self.__responsesize=0
         self.__responsecode=0
         self.__down=False
 
