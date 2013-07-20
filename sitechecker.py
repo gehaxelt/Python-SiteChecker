@@ -2,6 +2,7 @@
 
 import urllib, urllib2, time
 import sys
+import os.path
 
 class CheckerRequest(object):
     
@@ -67,17 +68,20 @@ class CheckerRequest(object):
         file.close()    
 
 
-chckr = CheckerRequest()
-
-while True:
-    for url in open("sites.txt","r").readlines():
-        chckr.setURL(url.strip())
-        print url.strip()
-        if chckr.runTest():
-            print chckr.getDuration()
-            print chckr.getResponseSize()
-            print chckr.getResponseCode()
-        else:
-            print "Down"
-        chckr.saveTest()
-    time.sleep(60)
+if __name__ == "__main__":
+    if not os.path.isfile("sites.txt"):
+        print "./sites.txt not found"
+        exit(1) 
+    chckr = CheckerRequest()
+    while True:
+        for url in open("sites.txt","r").readlines():
+            chckr.setURL(url.strip())
+            print url.strip()
+            if chckr.runTest():
+                print chckr.getDuration()
+                print chckr.getResponseSize()
+                print chckr.getResponseCode()
+            else:
+                print "Down"
+            chckr.saveTest()
+        time.sleep(60)
